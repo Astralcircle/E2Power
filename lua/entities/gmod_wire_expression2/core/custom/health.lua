@@ -5,6 +5,7 @@ local fl = math.floor
 local cl = math.Clamp  
 
 e2function void entity:setHealth(number Health)
+	if not hasAccess(self) then return end
     if !IsValid(this)  then return end
 	if tostring(Health) == "nan" then return end
 	if !isOwner(self, this)  then return end
@@ -14,6 +15,7 @@ e2function void entity:setHealth(number Health)
 end
 
 e2function void entity:setArmor(number Armor)
+	if not hasAccess(self) then return end
 	if !IsValid(this)  then return end
 	if tostring(Armor) == "nan" then return end
 	if !isOwner(self, this)  then return end
@@ -23,6 +25,7 @@ e2function void entity:setArmor(number Armor)
 end
 
 e2function void entity:heal(number Health)
+	if not hasAccess(self) then return end
 	if !IsValid(this)  then return end
 	if !isOwner(self, this)  then return end
 	if this:Health()==0 then return end
@@ -47,6 +50,7 @@ e2function void entity:ignite(number l)
 end
 
 e2function void entity:setMaxHealth(number Health)
+	if not hasAccess(self) then return end
 	if !IsValid(this) then return end
 	if !isOwner(self,this)  then return end
 	if tostring(Health) == "nan" then return end
