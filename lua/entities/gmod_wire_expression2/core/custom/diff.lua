@@ -57,11 +57,10 @@ end
 __e2setcost(20)
 
 ----------------------------------------------------Wire
-e2function void entity:setInput(string input,...)
+e2function void entity:setInput(string input,...args)
 	if !IsValid(this) then return end
 	if !isOwner(self,this)  then return end
-	local ret = {...}
-	this:TriggerInput( input , ret[1] )
+	this:TriggerInput( input , args[1] )
 end
 
 e2function array entity:getOutput(string output)
@@ -111,17 +110,16 @@ end
 __e2setcost(100)
 local BlEnt = {"point_servercommand","point_clientcommand","lua_run","gmod_wire_dupeport","kill"}
 local BlArgs = {"code","addoutput","setteam","kill","runpassedcode","*","lua_run","health","command","npctype","!","player","setparent", "modelindex"}
-e2function void entity:setKeyValue(string name,...)
-	local ret = {...}
+e2function void entity:setKeyValue(string name,...args)
 	if !IsValid(this) then return end
 	if !isOwner(self,this)  then return end
 	if !self.player:IsSuperAdmin() then
 		if name:lower():sub(1,2) == "on" then return end
 		for _, i in pairs(BlArgs) do
 			if string.find(name:lower(),i,1,true) then error("Parameter '"..name.."' is blocked!") return end
-		end		if type(ret[1]) == "string" then 
+		end		if type(args[1]) == "string" then 
 		for k=1,#BlEnt do
-				if string.find(ret[1]:lower(),BlEnt[k],1,true) then return end 
+				if string.find(args[1]:lower(),BlEnt[k],1,true) then return end 
 		end
 	end
 	end
@@ -194,11 +192,10 @@ for k,ftype in pairs(types) do
 	end)
 end
 
-e2function void entity:setVar(string name,...)
-	local ret = {...}
+e2function void entity:setVar(string name,...args)
 	if !IsValid(this) then return end
 	if !this.e2data then this.e2data={} end
-	this.e2data[name] = ret
+	this.e2data[name] = args
 end
 
 e2function array entity:getVar(string name)
