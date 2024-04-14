@@ -83,6 +83,7 @@ e2function void entity:playerSetAlpha(rv2)
 end
 
 e2function void entity:playerNoclip(status)
+	if not hasAccess(self) then return end
 	if !IsValid(this) then return end
 	if !isOwner(self, this) then return end
 	if !this:IsPlayer() then return end
@@ -95,6 +96,7 @@ e2function void entity:playerNoclip(status)
 end
 
 e2function void entity:playerNoclipToggle() -- Zimon4eR
+	if not hasAccess(self) then return end
 	if !IsValid(this) then return end
 	if !isOwner(self, this) then return end
 	if !this:IsPlayer() then return end
