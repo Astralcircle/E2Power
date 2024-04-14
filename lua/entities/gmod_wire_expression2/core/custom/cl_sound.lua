@@ -39,7 +39,7 @@ local function StartTimer()
 	timer.Create("e2ParentSoundURL",0.1,0,function() 
 		if table.Count(E2SoundParToEnt) == 0 then E2SoundParToEnt=nil timer.Destroy( "e2ParentSoundURL" ) return end 
 		for k,v in pairs(E2SoundParToEnt) do
-			if v:IsValid() then 
+			if v:IsValid() and k:IsValid() then 
 				k:SetPos(v:GetPos())
 			end
 		end
