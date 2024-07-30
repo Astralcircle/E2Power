@@ -464,6 +464,8 @@ e2function entity spawnExpression2(vector pos, angle ang, string model)
 
 	if player.LastSpawnE2==nil then player.LastSpawnE2 = 0 end
 	if player.LastSpawnE2>CurTime() then return else player.LastSpawnE2=CurTime()+1 end
+
+	if not player:CheckLimit("wire_expressions") then return end
 	
 	local entity = ents.Create("gmod_wire_expression2")
 	if not entity or not entity:IsValid() then return end
