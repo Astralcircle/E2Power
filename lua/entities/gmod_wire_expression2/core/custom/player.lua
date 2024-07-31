@@ -2,7 +2,7 @@ __e2setcost(200)
 e2function void entity:setWeaponColor(vector rgb)
 	if not IsValid(this)  then return end
 	if not isOwner(self, this) then return end
-	if not this:IsWeapon() then return end
+	if not this:IsPlayer() then return end
 
 	local color = Vector(
 		isNan(rgb[1]) and 0 or math.Clamp(rgb[1], 0, 255) / 255,
@@ -29,7 +29,7 @@ end
 
 e2function vector entity:getWeaponColor()
 	if not IsValid(this) then return end
-	if not this:IsWeapon() then return end
+	if not this:IsPlayer() then return end
 
 	local color = this:GetWeaponColor() * 255
 
