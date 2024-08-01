@@ -219,7 +219,7 @@ function E2Lib.isOwner(self, entity)
 end
 
 function isNan(var)
-	return x ~= x
+	return tostring(var) == "nan"
 end
 
 E2Power.PlyHasAccess = PlyHasAccess
