@@ -28,7 +28,7 @@ local function ValidAction(ply)
 	return sbox_e2_entitycore:GetInt()==2 or (sbox_e2_entitycore:GetInt()==1 and ply:IsAdmin())
 end
 local BlackListForCoders = {"game_end","lua_run","point_commentary_node","env_entity_maker","npc_maker","worldspawn","npc_template_maker"}
-local BlackListForPlayers = {"env_entity_dissolver","env_entity_igniter","env_headcrabcanister","env_screenoverlay","script_intro","sky_camera","env_viewpunch","point_tesla","game","balance_point","grenade_beam"} -- Блеклист второй степени
+local BlackListForPlayers = {"env_entity_dissolver","env_entity_igniter","env_headcrabcanister","env_screenoverlay","script_intro","sky_camera","env_viewpunch","point_tesla","game","balance_point"} -- Блеклист второй степени
 
 local function createentitysfromE2(self,entity,pos,angles,freeze)
 	if not ValidSpawn() then return nil end
