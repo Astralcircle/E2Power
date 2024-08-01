@@ -10,7 +10,7 @@ e2function void entity:setWeaponColor(vector rgb)
 		isNan(rgb[3]) and 0 or math.Clamp(rgb[3], 0, 255) / 255
 	)
 
-	this:SetWeaponColor(Vec)
+	this:SetWeaponColor(color)
 end
 
 e2function void entity:setPlayerColor(vector rgb)
@@ -83,7 +83,7 @@ e2function void entity:playerSetAlpha(alpha)
 	if not isOwner(self, this) then return end
 	if not this:IsPlayer() then return end
 
-	this:SetColor(ColorAlpha(this:GetColor(), math.Clamp(alpha, 0, 255)))
+	this:SetColor(ColorAlpha(this:GetColor(), math.max(0, alpha)))
 end
 
 e2function void entity:playerNoclip(status)
@@ -93,9 +93,9 @@ e2function void entity:playerNoclip(status)
 	if not this:IsPlayer() then return end
 
 	if tobool(status) then
-		this:SetMoveType( MOVETYPE_NOCLIP )
+		this:SetMoveType(MOVETYPE_NOCLIP)
 	else
-		this:SetMoveType( MOVETYPE_WALK )
+		this:SetMoveType(MOVETYPE_WALK)
 	end
 end
 
@@ -106,9 +106,9 @@ e2function void entity:playerNoclipToggle()
 	if not this:IsPlayer() then return end
 
 	if this:GetMoveType() ~= MOVETYPE_NOCLIP then
-		this:SetMoveType( MOVETYPE_NOCLIP )
+		this:SetMoveType(MOVETYPE_NOCLIP)
 	else
-		this:SetMoveType( MOVETYPE_WALK )
+		this:SetMoveType(MOVETYPE_WALK)
 	end
 end
 
@@ -186,6 +186,7 @@ end
 
 e2function number entity:lookUpBone(string boneName)
 	if not IsValid(this) then return -1 end
+
 	return this:LookupBone(boneName) or -1
 end
 
@@ -288,11 +289,11 @@ e2function void entity:plyRunSpeed(number speed)
 	if not isOwner(self, this)  then return end
 	if not this:IsPlayer() then return end
 
-	speed = math.Clamp(speed, 0, 90000)
+	speed = math.min(speed, 100000)
 	if speed > 0 then
 		this:SetRunSpeed(speed)
 	else
-		this:SetRunSpeed(500)
+		this:SetRunSpeed(400)
 	end
 end
 
@@ -301,11 +302,11 @@ e2function void entity:plyWalkSpeed(number speed)
 	if not isOwner(self, this)  then return end
 	if not this:IsPlayer() then return end
 
-	speed = math.Clamp(speed, 0, 90000)
+	speed = math.min(speed, 100000)
 	if speed > 0 then
 		this:SetWalkSpeed(speed)
 	else
-		this:SetWalkSpeed(250)
+		this:SetWalkSpeed(200)
 	end
 end
 
@@ -314,11 +315,11 @@ e2function void entity:plyJumpPower(number power)
 	if not isOwner(self, this)  then return end
 	if not this:IsPlayer() then return end
 
-	power = math.Clamp(power, 0, 90000)
+	power = math.min(speed, 100000)
 	if power > 0 then
 		this:SetJumpPower(power)
 	else
-		this:SetJumpPower(160)
+		this:SetJumpPower(200)
 	end
 end
 
@@ -327,7 +328,7 @@ e2function void entity:plyCrouchWalkSpeed(number speed)
 	if not isOwner(self, this)  then return end
 	if not this:IsPlayer() then return end
 
-	speed = math.Clamp(speed, 0.01, 10)
+	speed = math.Clamp(speed, 0.01, 1)
 	this:SetCrouchedWalkSpeed(speed)
 end
 
