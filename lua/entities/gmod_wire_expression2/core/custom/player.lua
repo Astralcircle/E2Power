@@ -1,7 +1,5 @@
--- made by [G-moder]FertNoN
--- edit by Zimon4eR (0Fox)
-
 __e2setcost(200)
+
 e2function void entity:setWeaponColor(vector rgb) -- Zimon4eR
 	if !IsValid(this)  then return end
 	if !this:IsPlayer() then return end
@@ -41,7 +39,9 @@ e2function vector entity:getPlayerColor() -- Zimon4eR
 	local Vec = this:GetPlayerColor()*255
 	return {math.floor(Vec[1]),math.floor(Vec[2]),math.floor(Vec[3])}
 end
+
 __e2setcost(20)
+
 e2function void entity:playerFreeze()
 	if !IsValid(this)  then return end
 	if !isOwner(self, this)  then return end
@@ -170,7 +170,7 @@ end
 e2function void entity:playerSetBoneAng(Index,angle ang)
 	if !IsValid(this) then return end
 	if !this:IsPlayer() then return end
-	if !isOwner(self, this) then end
+	if !isOwner(self, this) then return end
 
 	if isNan(ang[1]) or isNan(ang[2]) or isNan(ang[3]) then return end
 	this:ManipulateBoneAngles( Index, Angle(ang[1], ang[2], ang[3]) )
@@ -179,7 +179,8 @@ end
 e2function void entity:playerSetBoneAng(string boneName, angle ang)
 	if !IsValid(this) then return end
 	if !this:IsPlayer() then return end
-	if !isOwner(self, this) then end
+	if !isOwner(self, this) then return end
+
 	if isNan(ang[1]) or isNan(ang[2]) or isNan(ang[3]) then return end
 	this:ManipulateBoneAngles( this:LookupBone(boneName), Angle(ang[1],ang[2],ang[3]) )
 end
@@ -193,6 +194,7 @@ e2function void playerSetBoneAng(string boneName ,angle ang)
 end
 
 __e2setcost(15000)
+
 e2function entity entity:playerRagdoll()
 	if !IsValid(this) then return end
 	if !isOwner(self, this) then return end
