@@ -365,10 +365,16 @@ e2function void entity:stripWeapons()
 	this:StripWeapons() 
 end
 
+__e2setcost(100)
+
 e2function void spawn()
-	if !self.player:IsPlayer() then return end
-	self.player:Spawn()
+	local selfplayer = self.player
+
+	if not selfplayer:IsPlayer() then return end
+	selfplayer:Spawn()
 end
+
+__e2setcost(20)
 
 e2function void entity:giveWeapon(string weap)
 	if !IsValid(this) then return end
